@@ -1,0 +1,18 @@
+{% extends 'bootstrap4/bootstrap4.html' %}
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{% block bootstrap4_content %}
+{% bootstrap_messages %}
+    <h2>Documents</h2>
+    <dl>
+        {% for document in object_list %}
+            <dt><a href="{{ MEDIA_URL }}{{ document.file_upload }}">{{ document.title }}</a></dt>
+            <dd>{%for tag in document.tags.all %}
+                {{ tag }}
+                {% endfor %}
+            </dd>
+        {% endfor %}
+    </dl>
+    <a href="{% url 'create' %}">Add Document</a>
+{% endblock %}
