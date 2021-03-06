@@ -1,11 +1,15 @@
 {% extends 'bootstrap4/bootstrap4.html' %}
 {# Load the tag library #}
 {% load bootstrap4 %}
-
+{% block title %}
+    Create new document
+{% endblock %}
 {% block bootstrap4_content %}
 {% bootstrap_messages %}
-<form method="post" enctype="multipart/form-data">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
+<form role="form" method="post" enctype="multipart/form-data">{% csrf_token %}
+    {% bootstrap_form form layout='inline' %}
+    {% bootstrap_form_errors form layout='inline' %}
+    {% buttons submit='Save' reset="Cancel" %}{% endbuttons %}
 </form>
+
 {% endblock %}

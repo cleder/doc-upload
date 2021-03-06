@@ -1,4 +1,5 @@
 """Views."""
+from django.contrib import messages
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 
@@ -20,4 +21,9 @@ class DocumentCreate(CreateView):
         if len(form.cleaned_data["tags"]) > 5:
             form.errors["tags"] = ["provide no more than 5 tags"]
             return self.form_invalid(form)
+        messages.add_message(
+            self.request,
+            messages.INFO,
+            f"File {form.cleaned_data['title']} saved successfully.",
+        )
         return super().form_valid(form)

@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "a$1@my*yv868j9wx75xl_%9_&qc08&si)!lxd$rh4xazby&h)p"
+SECRET_KEY = "overide this in local_settings!"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -76,6 +76,7 @@ WSGI_APPLICATION = "doccenter.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# overide this in local_settings
 
 DATABASES = {
     "default": {
@@ -124,3 +125,9 @@ USE_TZ = True
 STATIC_URL = "/static/"
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "media/"
+
+
+try:
+    from local_settings import *
+except:
+    pass
